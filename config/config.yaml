@@ -1,0 +1,16 @@
+http:
+  host: 'localhost'
+  port: 8080
+
+db:
+  postgres:
+    url: 'localhost'
+    port: 5432
+    database: 'test-db'
+
+  sqlite:
+    database: 'sqlite.db'
+
+  mongo:
+    url: 'demo'
+    
