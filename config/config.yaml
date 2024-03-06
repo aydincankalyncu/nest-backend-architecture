@@ -12,5 +12,5 @@ db:
     database: 'sqlite.db'
 
   mongo:
-    url: 'demo'
+    url: 'mongodb+srv://ecommerce:Efbhtlad123@cluster0.tiyoig6.mongodb.net/ecommerce?retryWrites=true&w=majority'
     
