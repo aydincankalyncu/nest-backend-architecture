@@ -8,10 +8,12 @@ import { SuccessResult } from 'src/utils/result/success-result';
 import { CreateUserDto } from './dto/create-user-dto';
 import { LoginUserDto } from './dto/login-user-dto';
 import { User } from 'src/database/mongo/schemas/user.schema';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
     constructor(@InjectModel(User.name) private readonly userModel: Model<User>,
+    private jwtService: JwtService
     ) { }
 
     async create(createUserDto: CreateUserDto): Promise<BaseResult> {
@@ -43,15 +45,15 @@ export class AuthService {
     async login(loginUserDto: LoginUserDto) : Promise<BaseResult> {
         const {email} = loginUserDto;
         try {
-            const user = await this.userModel.findOne({email: email}).exec();
+            const user = await this.userModel.findOne({email: email}).select('-password').exec();
             if(!user){
                 return new ErrorResult(`${email} doesn't exist on the system`, null);
             }
             if (user) {
                 const payload = { id: user._id, email: user.email, username: user.name };
           
-                //const accessToken = await this.jwtService.signAsync(payload)
-                return new SuccessResult("Login successfull", {/*accessToken: accessToken,*/ user: user, isPasswordMatches: true});
+                const accessToken = await this.jwtService.signAsync(payload)
+                return new SuccessResult("Login successfull", {accessToken: accessToken, user: user, isPasswordMatches: true});
               } else {
                 return new ErrorResult("Please check your login credentials", {user: null});
               }
