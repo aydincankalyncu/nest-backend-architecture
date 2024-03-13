@@ -1,5 +1,6 @@
 export class CreateCategoryDto {
-    name: string;
+    name    : string;
+    marketId: string;
 }
 
 export class UpdateCategoryDto {

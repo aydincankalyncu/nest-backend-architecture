@@ -14,15 +14,15 @@ export class CategoriesService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) : Promise<BaseResult>{
-        const {name} = createCategoryDto;
+        const {name, marketId} = createCategoryDto;
 
-        const createdCategory = new this.categoryModel({name: name});
+        const createdCategory = new this.categoryModel({name: name, marketId: marketId});
 
         try {
             await createdCategory.save();
             return new SuccessResult(`Category ${name} created successfully.`, createdCategory);
         } catch (error) {
-            return new ErrorResult(`Error occured on creating category`, error);
+            return new ErrorResult(`Error occur on creating category`, error);
         }
   }
 
@@ -31,7 +31,7 @@ export class CategoriesService {
       const categories = await this.categoryModel.find().exec();
       return new SuccessResult('Success', categories);
     } catch (error) {
-      return new ErrorResult('Error occured on getting categories', error);
+      return new ErrorResult('Error occur on getting categories', error);
     }
   }
 
@@ -44,7 +44,7 @@ export class CategoriesService {
       }
       return new SuccessResult("Success", category);
     } catch (error) {
-      return new ErrorResult("Error occured on getting category by id", error);
+      return new ErrorResult("Error occur on getting category by id", error);
     }
   }
 
@@ -56,7 +56,7 @@ export class CategoriesService {
     } 
     catch (error) 
     {
-      return new ErrorResult('Error occured on delete category', error);
+      return new ErrorResult('Error occur on delete category', error);
     }
   }
 
@@ -76,7 +76,7 @@ export class CategoriesService {
       
       return new SuccessResult('Success', result);
     } catch (error) {
-      return new ErrorResult('Error occured on updating category', error);
+      return new ErrorResult('Error occur on updating category', error);
     }
   }
 

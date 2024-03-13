@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument, SchemaTypes } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 
 export type MarketDocument = HydratedDocument<Market>;
 
@@ -12,17 +12,17 @@ export class Market{
     @Prop({required: true})
     email: string;
 
-    @Prop({default: {latitude: 0, longitude: 0}})
-    location: {
-        latitude: number;
-        longitude: number;
-    }
+    @Prop({required: true})
+    latitude: string;
+
+    @Prop({required: true})
+    longitude: string;
 
     @Prop({default: true})
     active: boolean;
 
-    @Prop({type: SchemaTypes.ObjectId, ref: 'User'})
-    user: string;
+    @Prop({required: true})
+    userId: string;
 
 }
 

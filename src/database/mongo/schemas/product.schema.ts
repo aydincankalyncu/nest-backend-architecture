@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument, SchemaTypes } from "mongoose";
+import { HydratedDocument } from "mongoose";
 
 
 export type ProductDocument = HydratedDocument<Product>;
@@ -12,11 +12,11 @@ export class Product{
     @Prop({required: true})
     price: number;
 
-    @Prop({type: SchemaTypes.ObjectId, ref: 'Category'})
-    category: string;
+    @Prop({required: true})
+    categoryId: string;
 
     @Prop({required: true})
-    quantity: number;
+    marketId: string;
 
     @Prop()
     priceWithDiscount: number;

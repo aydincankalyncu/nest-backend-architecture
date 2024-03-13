@@ -11,6 +11,9 @@ export class Category{
     @Prop({default: true})
     active: boolean;
 
+    @Prop({required: true})
+    marketId: string;
+
     @Prop({default: Date.now})
     createdAt: Date
 

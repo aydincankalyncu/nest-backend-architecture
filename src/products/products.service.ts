@@ -57,7 +57,7 @@ export class ProductsService {
     }
   }
   async update(updateProductDto: UpdateProductDto): Promise<BaseResult> {
-    const {productId, name, price, category, quantity, priceWithDiscount, stockAmount, active  } = updateProductDto;
+    const {productId, name, price, categoryId, priceWithDiscount, stockAmount, active  } = updateProductDto;
     try {
       const updatedProduct = await this.productModel.findById(productId).exec();
       if (!updatedProduct)
@@ -65,7 +65,7 @@ export class ProductsService {
         return new ErrorResult('There is no product with this id', productId);
       }
 
-      const updateFilter  = {name: name, price:price, category:category, quantity:quantity, priceWithDiscount:priceWithDiscount, stockAmount:stockAmount, active:active}
+      const updateFilter  = {name: name, price:price, categoryId:categoryId, priceWithDiscount:priceWithDiscount, stockAmount:stockAmount, active:active}
       const result    = await this.productModel.findOneAndUpdate({name: updatedProduct.name}, updateFilter, {new: true})
 
       return new SuccessResult('Success', result);

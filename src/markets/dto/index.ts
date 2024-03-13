@@ -1,21 +1,18 @@
 export class AddMarketDto {
   name      : string;
-  email     :string;
-  location  : {
-    latitude  : string;
-    longitude : string;
-  };
+  email     : string;
+  latitude  : string;
+  longitude : string;
   active?   : boolean;
-  user      : string;
+  userId    : string;
+
 }
 
 export class UpdateMarketDto{
   id        : string;
   name      : string;
   email     : string;
-  location  : {
-    latitude  : string;
-    longitude : string;
-  };
+  latitude  : string;
+  longitude : string;
   active?   : boolean;
 }

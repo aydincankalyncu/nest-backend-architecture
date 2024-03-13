@@ -59,7 +59,7 @@ export class MarketsService {
     }
   }
   async update(updateMarketDto: UpdateMarketDto): Promise<BaseResult> {
-    const { id, name, location, email, active } = updateMarketDto;
+    const { id, name, latitude, longitude, email, active } = updateMarketDto;
     try {
       const updatedMarket = await this.marketModel.findById(id).exec();
       if (!updatedMarket)
@@ -67,7 +67,7 @@ export class MarketsService {
         return new ErrorResult('There is no market with this id', id);
       }
 
-      const updateFilter  = {name: name, email: email, active: active, location: location};
+      const updateFilter  = {name: name, email: email, active: active, latitude: latitude, longitude: longitude};
       const result    = await this.marketModel.findOneAndUpdate({name: updatedMarket.name}, updateFilter, {new: true})
 
       return new SuccessResult('Success', result);
