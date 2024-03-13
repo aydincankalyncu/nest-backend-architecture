@@ -13,6 +13,7 @@ export class ProductsService {
 
   async create(createProductDto: CreateProductDto):Promise<BaseResult>{
     const createdProduct = new this.productModel(createProductDto);
+
     try {
       await createdProduct.save();
       return new SuccessResult(`Product ${createProductDto.name} created successfully`, createdProduct);
