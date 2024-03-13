@@ -15,7 +15,6 @@ export class CategoriesService {
 
   async create(createCategoryDto: CreateCategoryDto) : Promise<BaseResult>{
         const {name} = createCategoryDto;
-        console.log('Demo');
 
         const createdCategory = new this.categoryModel({name: name});
 
