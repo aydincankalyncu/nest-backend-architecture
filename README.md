@@ -1,6 +1,6 @@
 ## Description
 
-This project is built with the NestJs framework. It provides a general backend architecture for users.
+Common Store App Management Backend Application
 
 ## Content:
 - Mongoose library and Mongo database connection available.

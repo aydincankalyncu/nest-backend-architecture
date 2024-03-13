@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { HydratedDocument, SchemaTypes } from 'mongoose';
 
 export type MarketDocument = HydratedDocument<Market>;
 
@@ -20,6 +20,9 @@ export class Market{
 
     @Prop({default: true})
     active: boolean;
+
+    @Prop({type: SchemaTypes.ObjectId, ref: 'User'})
+    user: string;
 
 }
 
