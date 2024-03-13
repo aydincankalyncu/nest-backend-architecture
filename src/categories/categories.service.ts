@@ -19,7 +19,7 @@ export class CategoriesService {
         const createdCategory = new this.categoryModel({name: name});
 
         try {
-            createdCategory.save();
+            await createdCategory.save();
             return new SuccessResult(`Category ${name} created successfully.`, createdCategory);
         } catch (error) {
             return new ErrorResult(`Error occured on creating category`, error);
@@ -66,7 +66,7 @@ export class CategoriesService {
     const { categoryId, name, active } = updateCategoryDto;
     try {
       const updatedCategory = await this.categoryModel.findById(categoryId).exec();
-      if (!updateCategoryDto)
+      if (!updatedCategory)
       {
         return new ErrorResult('There is no category with this id', categoryId);
       }
